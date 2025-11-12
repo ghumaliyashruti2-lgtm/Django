@@ -2,7 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def homepage(request):
-    return render(request,"index.html")
+    data={
+        'title' : 'homepage'
+    }
+    return render(request,"index.html",data)
 
 def aboutus(request):
     return HttpResponse("welcome to shruti")
