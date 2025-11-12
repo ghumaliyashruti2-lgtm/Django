@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <p> welcome to home page </p>
+        {% for n in name %}
+        <div>{{n}}</div>
+        {% endfor %}
     </body>
 </html>
