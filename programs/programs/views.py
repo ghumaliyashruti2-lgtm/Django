@@ -4,6 +4,7 @@ from django.shortcuts import render
 def homepage(request):
     data={
         'title' : 'homepage',
+        'name' : ['riya','siya','priya'],
         'details' : [{'coursename' : 'html', 'fees' : 1200},
                      {'coursename' : 'python', 'fees' : 1500 }
                      ]
