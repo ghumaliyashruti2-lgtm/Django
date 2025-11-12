@@ -10,11 +10,26 @@
     </head>
     <body>
         <p> welcome to Course detail </p>
-        {% for n in details %}
+        {% for n in name %}
         <div>
-            {{n}}
+            {{forloop.counter}} {{n}}
         </div>
         {% endfor %}
+        <br>
+        <div>
+            <table border="1">
+                <tr> 
+                    <td> course name </td>
+                    <td> fees </td>
+                </tr>
+                {% for d in details %}
+                <tr> 
+                    <td> {{d.coursename}} </td>
+                    <td> {{d.fees}} </td> 
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
 
     </body>
 </html>
