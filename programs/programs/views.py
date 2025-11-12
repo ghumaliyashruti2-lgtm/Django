@@ -7,7 +7,8 @@ def homepage(request):
         'name' : ['riya','siya','priya'],
         'details' : [{'coursename' : 'html', 'fees' : 1200},
                      {'coursename' : 'python', 'fees' : 1500 }
-                     ]
+                     ],
+        'number' :[100,200,300,400,500]
         }
     return render(request,"index.html",data)
 
