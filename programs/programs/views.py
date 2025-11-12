@@ -10,7 +10,7 @@ def homepage(request):
     #                 ],
     #   'number' :[100,200,300,400,500]
     #    }
-    return render(request,"index.html",data)
+    return render(request,"index.html")
 
 def aboutus(request):
     return HttpResponse("welcome to shruti")
