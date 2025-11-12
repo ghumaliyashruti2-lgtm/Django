@@ -9,7 +9,7 @@ def homepage(request):
                      {'coursename' : 'python', 'fees' : 1500 }
                      ]
         }
-    return render(request,"index.html")
+    return render(request,"index.html",data)
 
 def aboutus(request):
     return HttpResponse("welcome to shruti")
