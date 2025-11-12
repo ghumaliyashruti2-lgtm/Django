@@ -4,6 +4,12 @@ from django.shortcuts import render
 def homepage(request):
     data={
         'title' : 'homepage'
+        
+        'details': [
+            {'course_name' = 'html' , 'fees' = 1200}
+            {'course_name' = 'python','fees' = 1500}
+            ]
+        
     }
     return render(request,"index.html",data)
 
