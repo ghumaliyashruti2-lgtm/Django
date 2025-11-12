@@ -30,6 +30,17 @@
                 {% endfor %}
             </table>
         </div>
+        <br>
+        {%if number|length > 0 %}
+         {% for r in number %}
+            {% if r > 250 %}
+                <div>{{r}}</div>
+            {% endif %}
+        {% endfor %}
+        {% else %}
+            No data
+        {% endif %}
+        
 
     </body>
 </html>
