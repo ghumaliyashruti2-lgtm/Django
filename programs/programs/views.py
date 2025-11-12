@@ -2,14 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def homepage(request):
-    data={
-        'title' : 'homepage',
-        'name' : ['riya','siya','priya'],
-        'details' : [{'coursename' : 'html', 'fees' : 1200},
-                     {'coursename' : 'python', 'fees' : 1500 }
-                     ],
-        'number' :[100,200,300,400,500]
-        }
+    #data={
+    #    'title' : 'homepage',
+    #    'name' : ['riya','siya','priya'],
+    #    'details' : [{'coursename' : 'html', 'fees' : 1200},
+    #                 {'coursename' : 'python', 'fees' : 1500 }
+    #                 ],
+    #   'number' :[100,200,300,400,500]
+    #    }
     return render(request,"index.html",data)
 
 def aboutus(request):
