@@ -25,6 +25,18 @@ def contact(request):
     #return render(request,"course-single.html")
     
 def courses(request):
-    return render(request,"courses.html")
+    return render(request,"courses.html")    
+    
+def login(request):
+    return render(request,"login.html")
+
+def single(request):
+    return render(request,"news-single.html")
+
+def register(request):
+    return render(request,"register.html")
+
+def course(request):
+    return render(request,"course-single.html")
 
 
