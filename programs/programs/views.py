@@ -12,11 +12,19 @@ def homepage(request):
     #    }
     return render(request,"index.html")
 
-def aboutus(request):
-    return HttpResponse("welcome to shruti")
+def about(request):
+    return render(request,"about.html")
 
+def admissions(request):
+    return render(request,"admissions.html")
+
+def contact(request):
+    return render(request,"contact.html")
+
+#def course-single(request):
+    #return render(request,"course-single.html")
+    
 def courses(request):
-    return HttpResponse("welcome to courses")
+    return render(request,"courses.html")
 
-def course_details(request,course_id):
-    return HttpResponse("welcome to " + str(course_id))
+

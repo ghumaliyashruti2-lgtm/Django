@@ -21,7 +21,8 @@ from programs import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage),
-    path('aboutus/',views.aboutus),
+    path('about/',views.about),
     path('courses/',views.courses),
-    path('courses/<int:course_id>',views.course_details)
+    path('contact/',views.contact),
+    path('admissions/',views.admissions)
 ]
