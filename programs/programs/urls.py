@@ -20,13 +20,13 @@ from programs import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homepage),
-    path('about/',views.about),
-    path('courses/',views.courses),
-    path('contact/',views.contact),
-    path('admissions/',views.admissions),
-    path('login/',views.login),
-    path('register/',views.register),
-    path('single/',views.single),
-    path('course/',views.course)
+    path('index/', views.homepage, name="index"),
+    path('about/',views.about,name="about-us"),
+    path('courses/',views.courses,name="courses"),
+    path('contact/',views.contact,name="contact"),
+    path('admissions/',views.admissions,name="admissions"),
+    path('login/',views.login,name="login"),
+    path('register/',views.register,name="register"),
+    path('single/',views.single,name="course-single-page"),
+    path('course/',views.course,name="course-details")
 ]
