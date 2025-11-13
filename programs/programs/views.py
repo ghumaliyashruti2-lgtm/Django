@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render
 
 def homepage(request):
@@ -38,5 +38,26 @@ def register(request):
 
 def course(request):
     return render(request,"course-single.html")
+
+def form(request):
+    ans=0
+    data = {}
+    try :
+        if request.method=="POST":
+         #n1=int(request.GET['num1'])
+         #n2=int(request.GET['num2'])
+         n1=int(request.POST.get('num1'))
+         n2=int(request.POST.get('num2'))
+         ans=n1+n2
+         data = {
+             'n1' : n1,
+             'n2' : n2,
+             'ans' : ans
+         }
+         
+         return HttpResponseRedirect('/index/')
+    except:
+            pass     
+    return render(request,"form.html",data)
 
 
