@@ -1,5 +1,5 @@
 from django.http import HttpResponse,HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 def homepage(request):
     #data={
@@ -39,6 +39,9 @@ def register(request):
 def course(request):
     return render(request,"course-single.html")
 
+def thankyou(request):
+    return render(request,"thank-you.html")
+
 def form(request):
     ans=0
     data = {}
@@ -54,8 +57,8 @@ def form(request):
              'n2' : n2,
              'ans' : ans
          }
-         
-         return HttpResponseRedirect('/index/')
+         url = "/thank-you/?output={}".format(ans)
+         return redirect(url)
     except:
             pass     
     return render(request,"form.html",data)

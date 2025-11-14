@@ -29,5 +29,6 @@ urlpatterns = [
     path('register/',views.register,name="register"),
     path('single/',views.single,name="course-single-page"),
     path('course/',views.course,name="course-details"),
-    path('form/',views.form,name="form")
-]
+    path('form/',views.form,name="form"),
+    path('thank-you/',views.form,name="thank-you")
+    ]
