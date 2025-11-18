@@ -40,6 +40,9 @@ def register(request):
 def course(request):
     return render(request,"course-single.html")
 
+def calculator(request):
+    return render(request,"calculator.html")
+
 
 def thankyou(request):
     if request.method == "POST":
@@ -68,4 +71,40 @@ def form(request):
         return HttpResponseRedirect("/thank-you/",data)
     return render(request,"form.html",data)
 
+
+def calculator(request):
+    ans = ""
+    n1 = ""
+    n2 = ""
+    opr = ""
+
+    try:
+        if request.method == "POST":
+            n1 = int(request.POST.get('val1'))
+            n2 = int(request.POST.get('val2'))
+            opr = request.POST.get('opr')
+
+            match opr:
+                case '+':
+                    ans = n1 + n2
+                case '-':
+                    ans = n1 - n2
+                case '*':
+                    ans = n1 * n2
+                case '/':
+                    ans = n1 / n2
+                case _:
+                    ans = "Invalid operator"
+
+    except Exception as e:
+        ans = "Invalid operator .."
+
+    return render(request, "calculator.html", {
+        'ans': ans,
+        'n1': n1,
+        'n2': n2,
+        'opr': opr
+    })
+
+    
 
