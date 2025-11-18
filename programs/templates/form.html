@@ -28,19 +28,19 @@
                 <div class="col-md-5">
                     <div class="row">
                         <div class="col-12 ">
-                            <form method = "POST">
+                            <form method = "POST" action = "{% url 'thankyou' %}">
                                  {% csrf_token %}
-                                <div>
+                                 {{ form }}
+                                <!--<div>
                                     <label for="num1">number1</label>
                                     <input type="text" name = "num1" value="{{n1}}" class="form-control form-control-lg" >
                                 </div>
                                 <div>
                                     <label for="num2">number2</label>
                                     <input type="text" name = "num2"  value="{{n1}}" class="form-control form-control-lg" >
-                                </div>
+                                </div>-->
                                 <div class = "pt-4">
                                     <input type="submit" value="submit" >
-                                    <input type="text" value="{{ans}}">
                                 </div>
                             </form>
                         </div>    

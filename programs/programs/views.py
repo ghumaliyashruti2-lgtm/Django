@@ -1,5 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
+from .forms import py_Form
 
 def homepage(request):
     #data={
@@ -39,28 +40,32 @@ def register(request):
 def course(request):
     return render(request,"course-single.html")
 
+
 def thankyou(request):
-    return render(request,"thank-you.html")
+    if request.method == "POST":
+        n1 = int(request.POST.get('num1'))
+        n2 = int(request.POST.get('num2'))
+        ans = n1 + n2
+        return render(request, "thank-you.html", {'answer': ans})
+    return render(request, "thank-you.html")
+
+
 
 def form(request):
     ans=0
-    data = {}
-    try :
-        if request.method=="POST":
-         #n1=int(request.GET['num1'])
-         #n2=int(request.GET['num2'])
-         n1=int(request.POST.get('num1'))
-         n2=int(request.POST.get('num2'))
-         ans=n1+n2
-         data = {
-             'n1' : n1,
-             'n2' : n2,
-             'ans' : ans
-         }
-         url = "/thank-you/?output={}".format(ans)
-         return redirect(url)
-    except:
-            pass     
+    varForm = py_Form()
+    data = {'form':varForm}
+    if request.method=="POST":
+        n1=int(request.POST.get('num1'))
+        n2=int(request.POST.get('num2'))
+        ans=n1+n2
+        data = {
+            'n1' : n1,
+            'n2' : n2,
+            'answer' : ans,
+            'form':varForm       
+        }
+        return HttpResponseRedirect("/thank-you/",data)
     return render(request,"form.html",data)
 
 
