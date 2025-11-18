@@ -31,5 +31,6 @@ urlpatterns = [
     path('course/',views.course,name="course-details"),
     path('form/',views.form,name="form"),
     path('thank-you/',views.thankyou,name="thankyou"),
-    path('calculator/',views.calculator)
+    path('calculator/',views.calculator),
+    path('evenodd/',views.evenodd)
     ]

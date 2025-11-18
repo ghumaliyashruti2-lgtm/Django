@@ -106,5 +106,17 @@ def calculator(request):
         'opr': opr
     })
 
+
+def evenodd(request):
+    n1 = ""
+    ans = ""
+    if request.method == "POST":
+        n1 =int(request.POST.get('val1'))
+        if n1%2 == 0:
+            ans = "Even"
+        else:
+            ans = "Odd"
+    return render(request, "evenodd.html", {'ans': ans,'n1': n1})
     
+
 
