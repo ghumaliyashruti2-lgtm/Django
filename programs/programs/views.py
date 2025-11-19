@@ -2,14 +2,16 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from service.models import Service
 from .forms import py_Form
-
+from news.models import News
 
 def homepage(request):
     services_data= Service.objects.all() # [:1] use for limit negative index not support 
     # services_data= Service.objects.order_by("id")  for accending
     # services_data= Service.objects.order_by("-id")  for desccending 
+    news_data = News.objects.all()
     data = {
-        'services_datas' : services_data
+        'services_datas' : services_data,
+        'news_data':news_data
     }
     return render(request,"index.html",data)
 

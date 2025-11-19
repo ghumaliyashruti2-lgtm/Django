@@ -1,0 +1,6 @@
+create a news file :- python manage.py startapp news
+now go to model file and create model 
+and after go to admin file and craete a  model for admin 
+now add in setting .py file and apply in view or index file 
+
+

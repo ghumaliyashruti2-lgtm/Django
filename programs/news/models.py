@@ -5,3 +5,5 @@ class News(models.Model):
     news_title = models.CharField(max_length=100)
     news_description = HTMLField()
 # Create your models here.
+
+
