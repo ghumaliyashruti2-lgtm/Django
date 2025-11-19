@@ -5,11 +5,11 @@ from .forms import py_Form
 
 
 def homepage(request):
-    services_data= Service.objects.all()[:1] # use for limit 
+    services_data= Service.objects.all() # [:1] use for limit negative index not support 
     # services_data= Service.objects.order_by("id")  for accending
     # services_data= Service.objects.order_by("-id")  for desccending 
     data = {
-        'services_datas' : services_daa
+        'services_datas' : services_data
     }
     return render(request,"index.html",data)
 

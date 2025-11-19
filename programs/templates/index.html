@@ -45,7 +45,8 @@
               </div>
               <div class="feature-1-content">
                 <h2>{{n.service_title}}</h2>
-                <p>{{n.service_description}}</p>
+                <!--<p>{{n.service_description  }}</p>-->
+                <p>{{n.service_description | safe | capfirst | wordcount | length | slice:"0:3"}}</p>
                 <p><a href="#" class="btn btn-primary px-4 rounded-0">Learn More</a></p>
               </div>
             </div>
