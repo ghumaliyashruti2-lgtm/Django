@@ -1,17 +1,15 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
+from service.models import Service
 from .forms import py_Form
 
+
 def homepage(request):
-    #data={
-    #    'title' : 'homepage',
-    #    'name' : ['riya','siya','priya'],
-    #    'details' : [{'coursename' : 'html', 'fees' : 1200},
-    #                 {'coursename' : 'python', 'fees' : 1500 }
-    #                 ],
-    #   'number' :[100,200,300,400,500]
-    #    }
-    return render(request,"index.html")
+    services_data= Service.objects.all()
+    data = {
+        'services_datas' : services_data
+    }
+    return render(request,"index.html",data)
 
 def about(request):
     return render(request,"about.html")
