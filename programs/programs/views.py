@@ -118,5 +118,36 @@ def evenodd(request):
             ans = "Odd"
     return render(request, "evenodd.html", {'ans': ans,'n1': n1})
     
-
-
+def marksheet(request):
+    if request.method == "POST":
+        s1 = int(request.POST.get('mark1'))
+        s2 = int(request.POST.get('mark2'))
+        s3 = int(request.POST.get('mark3'))
+        s4 = int(request.POST.get('mark4'))
+        s5 = int(request.POST.get('mark5'))
+        totals = s1+s2+s3+s4+s5
+        percentage = totals * 100 / 500
+        if percentage >= 90:
+            division = "first class"
+        elif percentage >=80 and percentage <=90:
+            division = "second class"
+        elif percentage >=70 and percentage <=80:
+            division = "third class"
+        elif percentage >=35 and percentage <=70:
+            division = "pass"
+        else:
+            division = "fail"   
+        
+        data = {
+            'mark1' : s1,
+            'mark2' : s2,
+            'mark3' : s3,
+            'mark4' : s4,
+            'mark5' : s5,
+            'total' : totals ,
+            'per' : percentage,
+            'div' : division
+        }
+        
+        return render(request, "marksheet.html",data )
+    return render(request, "marksheet.html")
