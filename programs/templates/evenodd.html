@@ -28,6 +28,13 @@
                     <div class="row">
                         <div class="col-12 ">
                             <form method = "POST" >
+
+                                {% if error %}
+                                <div class="alert alert-danger" >
+                                      please Enter the values                                
+                                </div>
+                                {% endif %}
+
                                 {% csrf_token %}
                                <div >
                                     <label for="val1">Enter the value1</label>
