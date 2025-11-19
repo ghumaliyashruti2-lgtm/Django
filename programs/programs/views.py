@@ -46,8 +46,8 @@ def calculator(request):
 
 def thankyou(request):
     if request.method == "POST":
-        n1 = int(request.POST.get('num1'))
-        n2 = int(request.POST.get('num2'))
+        n1 = eval(request.POST.get('num1'))
+        n2 = eval(request.POST.get('num2'))
         ans = n1 + n2
         return render(request, "thank-you.html", {'answer': ans})
     return render(request, "thank-you.html")
@@ -59,8 +59,8 @@ def form(request):
     varForm = py_Form()
     data = {'form':varForm}
     if request.method=="POST":
-        n1=int(request.POST.get('num1'))
-        n2=int(request.POST.get('num2'))
+        n1=eval(request.POST.get('num1'))
+        n2=eval(request.POST.get('num2'))
         ans=n1+n2
         data = {
             'n1' : n1,
@@ -80,8 +80,8 @@ def calculator(request):
 
     try:
         if request.method == "POST":
-            n1 = int(request.POST.get('val1'))
-            n2 = int(request.POST.get('val2'))
+            n1 = eval(request.POST.get('val1'))
+            n2 = eval(request.POST.get('val2'))
             opr = request.POST.get('opr')
 
             match opr:
@@ -111,7 +111,10 @@ def evenodd(request):
     n1 = ""
     ans = ""
     if request.method == "POST":
-        n1 =int(request.POST.get('val1'))
+        if request.POST.get('val1') == "":
+             return render(request, "evenodd.html",{'error': True})
+         
+        n1 =eval(request.POST.get('val1'))
         if n1%2 == 0:
             ans = "Even"
         else:
@@ -120,11 +123,11 @@ def evenodd(request):
     
 def marksheet(request):
     if request.method == "POST":
-        s1 = int(request.POST.get('mark1'))
-        s2 = int(request.POST.get('mark2'))
-        s3 = int(request.POST.get('mark3'))
-        s4 = int(request.POST.get('mark4'))
-        s5 = int(request.POST.get('mark5'))
+        s1 = eval(request.POST.get('mark1'))
+        s2 = eval(request.POST.get('mark2'))
+        s3 = eval(request.POST.get('mark3'))
+        s4 = eval(request.POST.get('mark4'))
+        s5 = eval(request.POST.get('mark5'))
         totals = s1+s2+s3+s4+s5
         percentage = totals * 100 / 500
         if percentage >= 90:
