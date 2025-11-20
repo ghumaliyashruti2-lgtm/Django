@@ -78,17 +78,19 @@
                   </li>
                   {% endif %}
                   
-                  <li class="page-item"><a class="page-link" href="/courses/?page=1">1</a></li>
-                  <li class="page-item ">
-                    <a class="page-link" href="/courses/?page=2">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="/courses/?page=3">3</a></li>
+                  {% for n in total_pages %}
+                  <li class="page-item"><a class="page-link" href="/courses/?page={{n}}">{{n}} <span class="sr-only">(current)</span></a></li>
+                   
+                  {% endfor%}
 
                   {% if courses_datas.has_next %}
                   <li class="page-item">
                     <a class="page-link" href="/courses/?page={{courses_datas.next_page_number}}">Next</a>
                   </li>
                    {% endif %}
+                   <li class="page-item">
+                    <a class="page-link" href="/courses/?page={{lastpage}}">Last</a>
+                  </li>
                 </ul>
             </nav>
         </div>

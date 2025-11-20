@@ -51,12 +51,15 @@ def courses(request):
     paginator=Paginator(courses_data,1)
     page_number=request.GET.get('page')
     courses_datafinal = paginator.get_page(page_number)
+    totalpage=courses_datafinal.paginator.num_pages
     #if request.method == "GET":
     #    ct = request.GET.get('search')
     #    if ct!=None:
     #        courses_data= Courses.objects.filter(courses_title__icontains=ct)
     data ={
-        'courses_datas' : courses_datafinal
+        'courses_datas' : courses_datafinal,
+        'lastpage': totalpage,
+        'total_pages':[n+1 for n in range(totalpage)]
     }
     
     return render(request,"courses.html",data)    
