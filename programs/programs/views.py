@@ -1,6 +1,7 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from service.models import Service
+from courses.models import Courses
 from .forms import py_Form
 from news.models import News
 
@@ -36,7 +37,15 @@ def contact(request):
     #return render(request,"course-single.html")
     
 def courses(request):
-    return render(request,"courses.html")    
+    courses_data= Courses.objects.all() 
+    if request.method == "GET":
+        ct = request.GET.get('search')
+        if ct!=None:
+            courses_data= Courses.objects.filter(courses_title__icontains=ct)
+    data ={
+        'courses_datas' : courses_data
+    }
+    return render(request,"courses.html",data)    
     
 def login(request):
     return render(request,"login.html")
