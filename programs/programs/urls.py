@@ -34,5 +34,5 @@ urlpatterns = [
     path('calculator/',views.calculator),
     path('evenodd/',views.evenodd),
     path('marksheet/',views.marksheet),
-    path('newsdetails/<id>',views.newsdetails)
+    path('newsdetails/<new_slug>',views.newsdetails)
     ]
