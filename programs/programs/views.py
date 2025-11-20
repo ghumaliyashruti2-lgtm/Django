@@ -4,7 +4,10 @@ from service.models import Service
 from courses.models import Courses
 from .forms import py_Form
 from news.models import News
+from django.core.paginator import Paginator
 
+
+#Homepage 
 def homepage(request):
     services_data= Service.objects.all() # [:1] use for limit negative index not support 
     # services_data= Service.objects.order_by("id")  for accending
@@ -17,6 +20,7 @@ def homepage(request):
     return render(request,"index.html",data)
 
 
+#newsdeatils
 def newsdetails(request,new_slug):
     newsdetails=News.objects.get(new_slug= new_slug)
     data = {
@@ -24,45 +28,64 @@ def newsdetails(request,new_slug):
     }
     return render(request,"newsdetails.html",data)
 
+
+#about
 def about(request):
     return render(request,"about.html")
 
+#admissions
 def admissions(request):
     return render(request,"admissions.html")
 
+#contact
 def contact(request):
     return render(request,"contact.html")
 
 #def course-single(request):
     #return render(request,"course-single.html")
     
+    
+#courses
 def courses(request):
     courses_data= Courses.objects.all() 
-    if request.method == "GET":
-        ct = request.GET.get('search')
-        if ct!=None:
-            courses_data= Courses.objects.filter(courses_title__icontains=ct)
+    paginator=Paginator(courses_data,1)
+    page_number=request.GET.get('page')
+    courses_datafinal = paginator.get_page(page_number)
+    #if request.method == "GET":
+    #    ct = request.GET.get('search')
+    #    if ct!=None:
+    #        courses_data= Courses.objects.filter(courses_title__icontains=ct)
     data ={
-        'courses_datas' : courses_data
+        'courses_datas' : courses_datafinal
     }
+    
     return render(request,"courses.html",data)    
     
+    
+#login    
 def login(request):
     return render(request,"login.html")
 
+#single
 def single(request):
     return render(request,"news-single.html")
 
+
+#register
 def register(request):
     return render(request,"register.html")
 
+
+#course
 def course(request):
     return render(request,"course-single.html")
 
-def calculator(request):
-    return render(request,"calculator.html")
 
+#calculator
+#def calculator(request):
+#    return render(request,"calculator.html")
 
+#thankyou
 def thankyou(request):
     if request.method == "POST":
         n1 = eval(request.POST.get('num1'))
@@ -72,7 +95,7 @@ def thankyou(request):
     return render(request, "thank-you.html")
 
 
-
+#form
 def form(request):
     ans=0
     varForm = py_Form()
@@ -90,7 +113,7 @@ def form(request):
         return HttpResponseRedirect("/thank-you/",data)
     return render(request,"form.html",data)
 
-
+#calculator
 def calculator(request):
     ans = ""
     n1 = ""
@@ -125,7 +148,7 @@ def calculator(request):
         'opr': opr
     })
 
-
+#evenodd
 def evenodd(request):
     n1 = ""
     ans = ""
@@ -139,7 +162,9 @@ def evenodd(request):
         else:
             ans = "Odd"
     return render(request, "evenodd.html", {'ans': ans,'n1': n1})
-    
+   
+   
+#marksheet
 def marksheet(request):
     if request.method == "POST":
         s1 = eval(request.POST.get('mark1'))

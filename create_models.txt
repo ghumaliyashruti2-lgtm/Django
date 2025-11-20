@@ -4,3 +4,18 @@ and after go to admin file and craete a  model for admin
 now add in setting .py file and apply in view or index file 
 
 
+## create slug url 
+
+installtion  command :- pip install django-autoslug
+now add  news model folder in command:- from autoslug import AutoSlugField
+create :- new_slug=AutoSlugField(populate_from='news_title',unique=True,null=True,default=None)
+cmd command:- python manage.py makemigrations 
+	        :-  python manage.py migrate
+check in db browser news table 
+now go to localhost admin page and news and go to particular news and save again - its craete a slug automatic 
+now edit index ,view and url file for slug just replace id == new_slug  
+
+
+
+
+
