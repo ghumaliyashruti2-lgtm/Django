@@ -2,6 +2,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
 from service.models import Service
 from courses.models import Courses
+from contacts.models import Contacts
 from .forms import py_Form
 from news.models import News
 from django.core.paginator import Paginator
@@ -39,6 +40,18 @@ def admissions(request):
 
 #contact
 def contact(request):
+    if request.method == "POST":
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        email = request.POST.get('email')
+        mobilenumber = request.POST.get("contact_mobilenumber")
+        msg = request.POST.get('message')
+        contact_data =Contacts(contact_firstname =fname,contact_lastname=lname,contact_email=email,contact_mobilenumber=mobilenumber,contact_message=msg )
+        contact_data.save()
+        if request.POST.get('fname') == "" or ('lname') == "" or ('email') == "" or ('mobilenumber') == "" or ('msg') == "" :
+            return render(request, "contact.html", {'error': True})
+        else:
+            return render(request, "contact.html", {'success': True})
     return render(request,"contact.html")
 
 #def course-single(request):
