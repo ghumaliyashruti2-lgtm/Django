@@ -6,10 +6,21 @@ from contacts.models import Contacts
 from .forms import py_Form
 from news.models import News
 from django.core.paginator import Paginator
+from django.core.mail import send_mail,EmailMultiAlternatives
+
 
 
 #Homepage 
 def homepage(request):
+
+    
+    #send_mail(
+    #"modern coaching classes",
+    #"Thank you for contacting us",
+    #"shrutighumaliyaofficial@gmail.com",
+    #["ghumaliyashruti2@gmail.com"],
+    #fail_silently=False,
+    #)
     services_data= Service.objects.all() # [:1] use for limit negative index not support 
     # services_data= Service.objects.order_by("id")  for accending
     # services_data= Service.objects.order_by("-id")  for desccending 
@@ -45,14 +56,41 @@ def contact(request):
         lname = request.POST.get('lname')
         email = request.POST.get('email')
         mobilenumber = request.POST.get("contact_mobilenumber")
-        msg = request.POST.get('message')
-        contact_data =Contacts(contact_firstname =fname,contact_lastname=lname,contact_email=email,contact_mobilenumber=mobilenumber,contact_message=msg )
-        contact_data.save()
-        if request.POST.get('fname') == "" or ('lname') == "" or ('email') == "" or ('mobilenumber') == "" or ('msg') == "" :
+        message = request.POST.get('message')
+        
+        if not fname or not lname or not email or not mobilenumber or not message:
             return render(request, "contact.html", {'error': True})
-        else:
-            return render(request, "contact.html", {'success': True})
-    return render(request,"contact.html")
+
+        Contacts.objects.create(
+            contact_firstname=fname,
+            contact_lastname=lname,
+            contact_email=email,
+            contact_mobilenumber=mobilenumber,
+            contact_message=message
+        )
+        
+        subject = "Student Enquiry"
+        from_email = email       
+        to = ["ghumaliyashruti2@gmail.com"]
+        html_content = f"""
+            <h3>New Enquiry From Contact</h3>
+            <p><b>First Name:</b> {fname} {lname}</p>
+            <p><b>Email:</b> {email}</p>
+            <p><b>Mobile:</b> {mobilenumber}</p>
+            <p><b>Message:</b><br>{message}</p>
+        """
+        msg = EmailMultiAlternatives(subject, html_content, from_email, to)
+        msg.content_subtype = 'html'
+        msg.send()
+
+        return render(request, "contact.html", {'success': True})
+
+    return render(request, "contact.html")
+
+
+
+
+
 
 #def course-single(request):
     #return render(request,"course-single.html")
@@ -214,3 +252,5 @@ def marksheet(request):
         
         return render(request, "marksheet.html",data )
     return render(request, "marksheet.html")
+
+
