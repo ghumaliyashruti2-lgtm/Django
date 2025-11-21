@@ -12,15 +12,6 @@ from django.core.mail import send_mail,EmailMultiAlternatives
 
 #Homepage 
 def homepage(request):
-
-    
-    #send_mail(
-    #"modern coaching classes",
-    #"Thank you for contacting us",
-    #"shrutighumaliyaofficial@gmail.com",
-    #["ghumaliyashruti2@gmail.com"],
-    #fail_silently=False,
-    #)
     services_data= Service.objects.all() # [:1] use for limit negative index not support 
     # services_data= Service.objects.order_by("id")  for accending
     # services_data= Service.objects.order_by("-id")  for desccending 
@@ -86,10 +77,13 @@ def contact(request):
         return render(request, "contact.html", {'success': True})
 
     return render(request, "contact.html")
-
-
-
-
+    #send_mail(
+    #"modern coaching classes",
+    #"Thank you for contacting us",
+    #"shrutighumaliyaofficial@gmail.com",
+    #["ghumaliyashruti2@gmail.com"],
+    #fail_silently=False,
+    #)
 
 
 #def course-single(request):

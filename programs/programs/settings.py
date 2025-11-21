@@ -129,10 +129,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [BASE_DIR,"static"]
 
-MEDIA_ROOT = BASE_DIR /"media"
 
+
+#for upload image in course page 
+MEDIA_ROOT = BASE_DIR /"media"
 MEDIA_URL = "/media/"
 
+
+#for smtp use for mail send
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT =587
